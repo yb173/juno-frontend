@@ -67,6 +67,7 @@ module.exports = {
         varsIgnorePattern: '_',
       },
     ],
+    'import/order': 1, // sort import in files
     'import/extensions': [
       'error',
       'ignorePackages',
@@ -77,6 +78,10 @@ module.exports = {
         tsx: 'never',
       },
     ],
+    // default export 推奨をオフにする
+    'import/prefer-default-export': 'off',
+    // default export が使われている場合はエラーにする
+    'import/no-default-export': 'error',
     // 関数定義をアロー関数に統一する
     'prefer-arrow/prefer-arrow-functions': [
       'error',
