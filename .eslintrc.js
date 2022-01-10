@@ -82,6 +82,11 @@ module.exports = {
     'import/prefer-default-export': 'off',
     // default export が使われている場合はエラーにする
     'import/no-default-export': 'error',
+    // テストファイルで devDependencies を import した際にエラーにならないようにする
+    'import/no-extraneous-dependencies': [
+      'error',
+      { devDependencies: ['**/*.test.ts', '**/*.test.tsx'] },
+    ],
     // 関数定義をアロー関数に統一する
     'prefer-arrow/prefer-arrow-functions': [
       'error',

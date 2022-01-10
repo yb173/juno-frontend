@@ -59,6 +59,7 @@
   },
   "devDependencies": {
     "@types/prettier": "^2.4.2",
+    "@types/react-test-renderer": "^17.0.1",
     "@types/testing-library__jest-dom": "^5.14.2",
     "@types/testing-library__user-event": "^4.2.0",
     "@typescript-eslint/eslint-plugin": "^5.8.1",
@@ -72,6 +73,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "lint-staged": "^12.1.4",
     "prettier": "^2.5.1",
+    "react-test-renderer": "^17.0.2",
     "simple-git-hooks": "^2.7.0",
     "stylelint": "^14.2.0",
     "stylelint-config-recess-order": "^3.0.0",

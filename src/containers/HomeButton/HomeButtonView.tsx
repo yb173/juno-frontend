@@ -1,6 +1,10 @@
 import { VFC } from 'react';
 
-export const HomeButtonView: VFC<{ redirectToHome?: () => void }> = ({
+export type Props = {
+  redirectToHome?: () => void;
+};
+
+export const HomeButtonView: VFC<Props> = ({
   redirectToHome = () => undefined,
 }) => (
   <button type="button" onClick={redirectToHome}>
