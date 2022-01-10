@@ -1,26 +1,30 @@
-import { FC } from 'react';
-import logo from './logo.svg';
+import { VFC, useEffect } from 'react';
+import { Navigate, Route, Routes, useLocation } from 'react-router';
+
 import './App.css';
 
-const App: FC = () => (
-  <div className="app">
-    <header className="app-header">
-      <img src={logo} className="app-logo" alt="logo" />
-      <p>
-        Edit
-        <code>src/App.tsx</code>
-        and save to reload.
-      </p>
-      <a
-        className="app-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-);
+import { HomePage } from 'pages/HomePage/Home';
+import { UsersPage } from 'pages/UsersPage';
+import { AllUsersPage } from 'pages/UsersPage/AllUsersPage';
+import { UserPage } from 'pages/UsersPage/UserPage';
 
-export default App;
+export const App: VFC = () => {
+  const { hash, pathname } = useLocation();
+
+  useEffect(() => {
+    if (!hash) window.scrollTo(0, 0);
+  }, [hash, pathname]);
+
+  return (
+    <div className="container">
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="users" element={<UsersPage />}>
+          <Route path="" element={<AllUsersPage />} />
+          <Route path=":id" element={<UserPage />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </div>
+  );
+};
