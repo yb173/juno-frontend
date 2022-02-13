@@ -10,6 +10,7 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings',
     'plugin:import/typescript',
+    'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/recommended-requiring-type-checking',
     'prettier',
@@ -49,6 +50,8 @@ module.exports = {
         allowAsStatement: true,
       },
     ],
+    // 関数の引数への代入は許可する（redux-toolkit が Immer.js を利用しているため）
+    'no-param-reassign': ['error', { props: false }],
     'padding-line-between-statements': [
       'error',
       {
