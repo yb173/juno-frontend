@@ -1,4 +1,5 @@
 import { isObject, isString, isDateString, isArray } from 'utils/typeUtils';
+import { isNumber } from '../utils/typeUtils';
 
 export type User = {
   userId: number;
@@ -14,7 +15,7 @@ export const isUser = (arg: unknown): arg is User => {
 
   return (
     isObject(user) &&
-    isString(user.userId) &&
+    isNumber(user.userId) &&
     isString(user.userName) &&
     isDateString(user.createdAt) &&
     isString(user.createdBy) &&
