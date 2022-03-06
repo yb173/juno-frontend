@@ -1,4 +1,4 @@
-name: CI
+name: Build and Test Juno Frontend Application
 
 on:
   pull_request:
@@ -12,16 +12,20 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./atcoder-problems-frontend
+        working-directory: ./
 
-      strategy:
-        matrix:
-          node-version: [16.x]
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
+    # repository を checkout
     - uses: actions/checkout@v2
-    - name: Use Node.js
-      uses: actions/setup-node@v1
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
 
     - name: Cache node_modules
       uses: actions/cache@v2
@@ -30,8 +34,12 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
 
     - name: Install dependencies
-      run: yarn
-    - name: build
+      # NODE_ENV=production となっていると devDependencies がインストールされないため，
+      # --production=false オプションを付与してインストールされるようにしている
+      run: yarn install --production=false
+
+    - name: Build
       run: yarn build
+
     - name: test
       run: yarn test
